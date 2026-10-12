@@ -27,20 +27,24 @@ export default function ConfirmDialog({
   onCancel,
 }: Props) {
   const confirmRef = useRef<HTMLButtonElement>(null)
+  const onCancelRef = useRef(onCancel)
+  useEffect(() => {
+    onCancelRef.current = onCancel
+  })
 
   useEffect(() => {
     if (!open) return
     const previous = document.activeElement as HTMLElement | null
     confirmRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onCancel()
+      if (e.key === 'Escape') onCancelRef.current()
     }
     document.addEventListener('keydown', onKey)
     return () => {
       document.removeEventListener('keydown', onKey)
       previous?.focus()
     }
-  }, [open, onCancel])
+  }, [open])
 
   if (!open) return null
 

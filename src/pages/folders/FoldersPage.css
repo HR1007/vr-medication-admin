@@ -1,0 +1,222 @@
+.caption__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: var(--fs-xs);
+}
+
+.folder-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.folder-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* ---------- card ---------- */
+.folder-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  transition: box-shadow 0.15s ease, transform 0.15s ease, filter 0.15s ease;
+}
+
+.folder-card:hover {
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.08);
+}
+
+.folder-row.is-selected .folder-card {
+  filter: brightness(0.82);
+}
+
+/* full-card click target, kept under the ⋮ button */
+.folder-card__open {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 0;
+  border-radius: inherit;
+  background: none;
+}
+
+.folder-card__top,
+.folder-card__bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  pointer-events: none;
+}
+
+.folder-card__more {
+  pointer-events: auto;
+}
+
+.folder-card__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-icon-tile);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.folder-card__badge {
+  position: absolute;
+  top: -6px;
+  right: -9px;
+  min-width: 18px;
+  height: 14px;
+  padding: 0 3px;
+  border-radius: var(--radius-sm);
+  background: var(--danger);
+  color: var(--white);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+
+.folder-card__name {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-card__more {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--gray-500);
+}
+
+.folder-card__more:hover {
+  background: rgb(0 0 0 / 0.06);
+}
+
+.folder-card__bottom {
+  justify-content: space-between;
+}
+
+.folder-card__date {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--bg-icon-tile);
+  color: var(--white);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.status-pill--done {
+  background: var(--primary);
+}
+
+/* ---------- selected: 刪除 / 匯出 ---------- */
+.folder-row__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 86px;
+  flex-shrink: 0;
+  animation: actions-in 0.18s ease-out;
+}
+
+/* ---------- deleting: red bar ---------- */
+.folder-row.is-deleting {
+  animation: row-collapse 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.folder-row__trash {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--danger);
+  color: var(--white);
+  box-shadow: var(--shadow-panel);
+}
+
+@keyframes actions-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+}
+
+@keyframes row-collapse {
+  0%,
+  55% {
+    opacity: 1;
+    max-height: 120px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    margin-top: calc(var(--space-4) * -1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folder-row.is-deleting,
+  .folder-row__actions {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .folder-row.is-selected {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .folder-row__actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .folder-row__actions .btn {
+    flex: 1;
+  }
+}
