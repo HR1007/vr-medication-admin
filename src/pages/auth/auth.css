@@ -1,0 +1,347 @@
+/* Login + Reset Password screens are light-only in Figma, so they use palette tokens, not theme tokens. */
+.auth {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px var(--space-4) 280px;
+  background-color: var(--primary-tint);
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.auth__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: min(100%, 464px);
+  padding: var(--space-8);
+  border: 1px solid var(--gray-line);
+  border-radius: 40px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+  animation: auth-card-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Login/5: the card lifts away before the dashboard opens */
+.auth__card.is-leaving {
+  animation: none;
+  transform: translateY(-120%);
+  opacity: 0;
+  transition:
+    transform 0.55s cubic-bezier(0.6, 0, 0.8, 0.4),
+    opacity 0.45s ease-in 0.1s;
+}
+
+.auth__back {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: var(--white);
+}
+
+.auth__logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-top: var(--space-4);
+}
+
+.auth__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: calc(var(--space-4) * -1);
+  text-align: center;
+}
+
+.auth__heading h1 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+  color: var(--ink);
+}
+
+.auth__heading p {
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--gray-icon);
+}
+
+/* Reset Password screens: left-aligned heading */
+.auth__step-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: calc(var(--space-3) * -1);
+}
+
+.auth__step-heading h1 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--black);
+}
+
+.auth__step-heading p {
+  font-size: var(--fs-md);
+  line-height: 20px;
+  color: var(--gray-icon);
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.auth-field__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--ink);
+}
+
+.auth-field__required {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--required);
+}
+
+.auth-field__box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--gray-400);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-field__box:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgb(10 188 173 / 0.15);
+}
+
+.auth-field__box.has-error {
+  border-color: var(--danger);
+}
+
+.auth-field__box input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  font-size: var(--fs-lg);
+  color: var(--black);
+}
+
+.auth-field__icon {
+  color: var(--gray-icon);
+  flex-shrink: 0;
+}
+
+.auth-field__eye {
+  display: grid;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gray-icon);
+}
+
+.auth-field__error {
+  font-size: var(--fs-xs);
+  color: var(--danger);
+}
+
+.auth__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--space-1);
+  font-size: var(--fs-xs);
+  color: var(--gray-text);
+}
+
+.auth__check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.auth__check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--success);
+}
+
+.auth__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gray-text);
+  font-size: var(--fs-xs);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.auth__link--primary {
+  color: var(--primary);
+}
+
+/* Button/Default — dark at rest, teal when the form is ready, pale while pressed / signing in */
+.auth__submit {
+  height: 52px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--white);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.auth__submit.is-ready {
+  background: var(--primary);
+}
+
+.auth__submit.is-ready:active,
+.auth__submit.is-loading {
+  background: var(--bg-icon-tile);
+  border-color: var(--primary);
+}
+
+.auth__submit:disabled {
+  cursor: default;
+}
+
+.auth__submit.is-loading::after {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  margin-left: 2px;
+  text-align: left;
+  animation: auth-dots 1.2s steps(4, end) infinite;
+}
+
+/* Reset Password/2 — five code boxes */
+.auth__code {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.auth__code input {
+  width: 56px;
+  height: 56px;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  font-size: 20px;
+  text-align: center;
+  color: var(--ink);
+  outline: none;
+}
+
+.auth__code input:focus {
+  box-shadow: 0 0 0 3px rgb(10 188 173 / 0.2);
+}
+
+.auth__hint {
+  font-size: var(--fs-md);
+  text-align: center;
+  color: var(--gray-700);
+}
+
+.auth__success {
+  display: grid;
+  place-items: center;
+}
+
+.auth__success svg {
+  color: var(--success);
+}
+
+.auth__toast {
+  font-size: var(--fs-xs);
+  text-align: center;
+  color: var(--primary);
+}
+
+@keyframes auth-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes auth-dots {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth__card,
+  .auth__card.is-leaving {
+    animation: none;
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth {
+    padding-top: var(--space-6);
+    padding-bottom: 200px;
+  }
+
+  .auth__card {
+    border-radius: var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .auth__heading h1 {
+    font-size: 24px;
+  }
+
+  .auth__code input {
+    width: 48px;
+    height: 48px;
+  }
+}

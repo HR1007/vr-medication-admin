@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { AlignLeft, FolderOpen, LogOut, MessageSquare, Moon, Search, Settings, Sun, UserRound } from 'lucide-react'
 import { asset } from '../lib/asset'
 import { useTheme } from '../lib/theme'
+import { useAuth } from '../lib/auth'
+import ConfirmDialog from '../components/ConfirmDialog'
 import './AppLayout.css'
 
 type NavItem = { to: string; label: string; icon: typeof FolderOpen; end?: boolean }
@@ -23,6 +25,9 @@ export default function AppLayout() {
   const { theme, toggleTheme } = useTheme()
   const { pathname } = useLocation()
   const navItems = buildNavItems(pathname)
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+  const [confirmLogout, setConfirmLogout] = useState(false)
   const [collapsed, setCollapsed] = useState(() => {
     if (narrowScreen()) return true
     try {
@@ -113,17 +118,24 @@ export default function AppLayout() {
           </div>
 
           <div className="sidebar__user">
-            <span className="avatar">
-              <UserRound size={22} />
-              <span className="avatar__status" />
-            </span>
+            {collapsed ? (
+              <button type="button" className="avatar" onClick={() => setConfirmLogout(true)} aria-label="登出">
+                <UserRound size={22} />
+                <span className="avatar__status" />
+              </button>
+            ) : (
+              <span className="avatar">
+                <UserRound size={22} />
+                <span className="avatar__status" />
+              </span>
+            )}
             {!collapsed && (
               <>
                 <span className="sidebar__user-text">
-                  <strong>陳瑪麗老師</strong>
-                  <small>中心主任</small>
+                  <strong>{user?.displayName}</strong>
+                  <small>{user?.role}</small>
                 </span>
-                <button type="button" className="sidebar__logout">
+                <button type="button" className="sidebar__logout" onClick={() => setConfirmLogout(true)}>
                   <LogOut size={22} />
                   <span>登出</span>
                 </button>
@@ -136,6 +148,20 @@ export default function AppLayout() {
           <Outlet />
         </main>
       </div>
+
+      <ConfirmDialog
+        open={confirmLogout}
+        icon={<UserRound size={22} />}
+        title="確認登出？"
+        description="登出後需重新登入帳號。"
+        confirmLabel="登出"
+        onCancel={() => setConfirmLogout(false)}
+        onConfirm={() => {
+          setConfirmLogout(false)
+          logout()
+          navigate('/login', { replace: true })
+        }}
+      />
     </div>
   )
 }

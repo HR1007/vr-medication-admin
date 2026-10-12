@@ -23,6 +23,12 @@
   --gray-500: #9ca3af;
   --gray-600: #909090;         /* Black / 600 */
   --gray-700: #6f6f6f;         /* Black / 700 */
+  --gray-icon: #6b7280;
+  --gray-text: #4b5563;
+  --gray-line: #d5d5d5;
+  --required: #a23e40;
+  --success: #16a34a;
+  --black: #000000;
   --white: #ffffff;
 
   /* semantic — light */
