@@ -140,16 +140,6 @@
   background: var(--primary);
 }
 
-/* ---------- selected: 刪除 / 匯出 ---------- */
-.folder-row__actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  width: 86px;
-  flex-shrink: 0;
-  animation: actions-in 0.18s ease-out;
-}
-
 /* ---------- deleting: red bar ---------- */
 .folder-row.is-deleting {
   animation: row-collapse 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -164,19 +154,6 @@
   background: var(--danger);
   color: var(--white);
   box-shadow: var(--shadow-panel);
-}
-
-@keyframes row-collapse {
-  0%,
-  55% {
-    opacity: 1;
-    max-height: 120px;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0;
-    margin-top: calc(var(--space-4) * -1);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -51,6 +51,19 @@
   --text-on-dark: #f3f4f6;
   --link: var(--accent);
   --checkbox: #0075ff;
+  --grad-summary: linear-gradient(100deg, #2dd4bf 0%, #06b6d4 50%, #3b82f6 100%);
+  --grad-confirm: linear-gradient(90deg, var(--primary), var(--accent));
+  --bg-answer-card: var(--white);
+  --border-answer-card: var(--accent-tint);
+  --bg-answer-quote: #f2f2f2;
+  --text-answer: var(--gray-text);
+  --bg-number: #f2f2f2;
+  --modal-input-bg: #f8fafc;
+  --modal-input-border: #e2e8f0;
+  --modal-title: #1e293b;
+  --modal-cancel-border: #cbd5e1;
+  --modal-cancel-text: #334155;
+  --modal-note: #94a3b8;
   --bg-filter: var(--primary-tint);
   --bg-table: var(--white);
   --bg-table-head: var(--gray-300);
@@ -116,6 +129,11 @@
   --border-table: #4b5563;
   --text-table: var(--white);
   --text-table-head: var(--white);
+  --bg-answer-card: var(--ink-deep);
+  --border-answer-card: #4b5563;
+  --bg-answer-quote: var(--ink);
+  --text-answer: #e5e7eb;
+  --bg-number: var(--ink);
 
   color-scheme: dark;
 }

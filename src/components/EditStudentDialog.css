@@ -1,0 +1,143 @@
+.edit-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: min(100%, 448px);
+}
+
+.edit-dialog__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-modal);
+  animation: dialog-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.edit-dialog__title {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  color: var(--modal-title);
+}
+
+.edit-dialog__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.edit-field__label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--ink);
+}
+
+.edit-field__combo {
+  position: relative;
+}
+
+.edit-field__input {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 1px solid var(--modal-input-border);
+  border-radius: var(--radius-lg);
+  background: var(--modal-input-bg);
+  font-size: var(--fs-lg);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.edit-field__input:hover,
+.edit-field__input:focus {
+  border-color: var(--accent);
+}
+
+.edit-field__input:focus {
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.12);
+}
+
+.edit-field__input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.edit-field__error {
+  font-size: var(--fs-xs);
+  color: var(--danger);
+}
+
+.edit-field__list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: var(--space-4);
+  z-index: 2;
+  margin: 0;
+  padding: var(--space-1) 0;
+  border: 1px solid var(--modal-input-border);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  background: var(--white);
+  box-shadow: 0 10px 20px rgb(0 0 0 / 0.12);
+  list-style: none;
+}
+
+.edit-field__list li {
+  padding: var(--space-3) 18px;
+  font-size: var(--fs-lg);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.edit-field__list li:hover,
+.edit-field__list li.is-active {
+  background: var(--accent-tint);
+}
+
+.edit-dialog__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.edit-dialog__btn {
+  flex: 1;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.edit-dialog__btn--cancel {
+  border: 1px solid var(--modal-cancel-border);
+  background: var(--white);
+  color: var(--modal-cancel-text);
+}
+
+.edit-dialog__btn--confirm {
+  border: 0;
+  background: var(--grad-confirm);
+  color: var(--white);
+}
+
+.edit-dialog__btn--confirm:hover {
+  filter: brightness(1.05);
+}
+
+.edit-dialog__note {
+  font-size: 10.2px;
+  color: var(--modal-note);
+}

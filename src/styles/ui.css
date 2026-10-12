@@ -188,6 +188,16 @@
   font-size: var(--fs-xs);
 }
 
+/* ---------- row actions: 刪除 / 匯出 (folders, answers) ---------- */
+.folder-row__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 86px;
+  flex-shrink: 0;
+  animation: actions-in 0.18s ease-out;
+}
+
 /* ---------- empty state ---------- */
 .empty {
   display: flex;
@@ -215,5 +225,18 @@
   from {
     opacity: 0;
     transform: translateX(-6px);
+  }
+}
+
+@keyframes row-collapse {
+  0%,
+  55% {
+    opacity: 1;
+    max-height: 120px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    margin-top: calc(var(--space-4) * -1);
   }
 }
