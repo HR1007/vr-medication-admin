@@ -94,6 +94,7 @@ export default function LoginPage() {
         <button type="submit" className={`auth__submit${ready ? ' is-ready' : ''}${busy ? ' is-loading' : ''}`} disabled={busy}>
           {busy ? '登入中' : '登入'}
         </button>
+        <p className="auth__demo-note">作品集互動 Demo：任意帳號密碼皆可登入，資料只會存在你的瀏覽器</p>
       </form>
     </AuthShell>
   )

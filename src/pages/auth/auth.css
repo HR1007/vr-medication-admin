@@ -251,6 +251,14 @@
   animation: auth-dots 1.2s steps(4, end) infinite;
 }
 
+.auth__demo-note {
+  margin-top: calc(var(--space-2) * -1);
+  font-size: var(--fs-xs);
+  line-height: 18px;
+  text-align: center;
+  color: var(--gray-icon);
+}
+
 /* Reset Password/2 — five code boxes */
 .auth__code {
   display: flex;
