@@ -89,7 +89,7 @@ export default function AppLayout() {
               >
                 <AlignLeft size={22} />
               </button>
-              {!collapsed && <img className="sidebar__school" src={asset('img/school-logo.png')} alt="大仁科技大學" width={138} height={28} />}
+              {!collapsed && <img className="sidebar__school" src={asset('img/school-logo-sidebar.png')} alt="大仁科技大學" width={138} height={24} />}
             </div>
 
             {collapsed ? (
