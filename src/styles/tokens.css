@@ -64,6 +64,25 @@
   --modal-cancel-border: #cbd5e1;
   --modal-cancel-text: #334155;
   --modal-note: #94a3b8;
+  --bg-log-card: var(--primary-tint);
+  --log-info: #2563eb;
+  --log-info-tint: #dbeafe;
+  --log-info-chip: #eff6ff;
+  --log-info-border: #93c5fd;
+  --log-success: #16a34a;
+  --log-success-dot: #22c55e;
+  --log-success-tint: #dcfce7;
+  --log-success-border: #86efac;
+  --log-warning: #ca8a04;
+  --log-warning-text: #854d0e;
+  --log-warning-tint: #fef9c3;
+  --log-warning-border: #fde047;
+  --log-error: #dc2626;
+  --log-error-tint: #fee2e2;
+  --log-error-chip: #fef2f2;
+  --log-error-border: #fca5a5;
+  --log-debug: #9ca3af;
+  --log-debug-border: #d1d5db;
   --bg-filter: var(--primary-tint);
   --bg-table: var(--white);
   --bg-table-head: var(--gray-300);
@@ -134,6 +153,7 @@
   --bg-answer-quote: var(--ink);
   --text-answer: #e5e7eb;
   --bg-number: var(--ink);
+  --bg-log-card: var(--ink);
 
   color-scheme: dark;
 }

@@ -34,7 +34,7 @@ export type TestRecord = {
   answers: Answer[]
 }
 
-export type LogLevel = 'info' | 'success' | 'warning' | 'error'
+export type LogLevel = 'info' | 'success' | 'warning' | 'error' | 'debug'
 
 export type LogEntry = {
   id: string
@@ -175,11 +175,14 @@ export function createSeed(): DemoData {
   })
 
   const logs: LogEntry[] = [
-    { id: 'l1', level: 'warning', title: '密碼輸入錯誤', module: '登入模組', message: '使用者連續 3 次輸入錯誤密碼，帳號已暫時鎖定 15 分鐘', at: '2024/12/13 15:10:33' },
-    { id: 'l2', level: 'error', title: 'VR 模組異常', module: 'VR 模組', message: 'VR 虛擬環境渲染出現延遲，已自動重新連線', at: '2024/12/13 16:55:22' },
-    { id: 'l3', level: 'info', title: '審核測驗', module: '測驗模組', message: '審核並發布「胰島素藥用藥諮詢」測驗情境，共新增 3 題', at: '2024/12/13 16:00:00' },
+    { id: 'l1', level: 'warning', title: '密碼輸入錯誤', module: '驗證模組', message: '使用者連續 3 次輸入錯誤密碼，帳號已暫時鎖定 15 分鐘', at: '2024/12/13 15:10:33' },
+    { id: 'l2', level: 'error', title: 'VR 模組異常', module: 'VR 模組', message: 'VR 虛擬環境渲染引擎回應逾時，已自動重啟服務', at: '2024/12/13 16:55:22' },
+    { id: 'l3', level: 'info', title: '審核測驗', module: '測驗模組', message: '審核並發布「抗凝血劑用藥諮詢」測驗情境，共新增 3 題', at: '2024/12/13 16:00:00' },
     { id: 'l4', level: 'success', title: '完成測驗', module: '測驗模組', message: '學生完成胰島素用藥諮詢測驗，得分 92 分', at: '2024/12/13 13:05:45' },
-    { id: 'l5', level: 'info', title: '使用者登入', module: '登入模組', message: '陳瑪麗老師登入後台管理系統', at: '2024/12/13 08:58:12' },
+    { id: 'l5', level: 'debug', title: '同步排程執行', module: '系統排程', message: '每日測驗資料備份完成，耗時 2.4 秒', at: '2024/12/13 03:00:02' },
+    { id: 'l6', level: 'info', title: '使用者登入', module: '登入模組', message: '陳瑪麗老師登入後台管理系統', at: '2024/12/12 08:58:12' },
+    { id: 'l7', level: 'error', title: '匯出失敗', module: '資料模組', message: '匯出檔案時磁碟空間不足，已中止並通知管理員', at: '2024/12/11 17:42:09' },
+    { id: 'l8', level: 'success', title: '新增測驗資料夾', module: '資料模組', message: '建立「抗生素正確使用諮詢」測驗資料夾', at: '2024/11/12 10:15:40' },
   ]
 
   return { folders, records, logs }

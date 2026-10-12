@@ -4,6 +4,7 @@ import { AlignLeft, FolderOpen, LogOut, MessageSquare, Moon, Search, Settings, S
 import { asset } from '../lib/asset'
 import { useTheme } from '../lib/theme'
 import { useAuth } from '../lib/auth'
+import { useStore } from '../lib/store'
 import ConfirmDialog from '../components/ConfirmDialog'
 import './AppLayout.css'
 
@@ -26,6 +27,7 @@ export default function AppLayout() {
   const { pathname } = useLocation()
   const navItems = buildNavItems(pathname)
   const { user, logout } = useAuth()
+  const { addLog } = useStore()
   const navigate = useNavigate()
   const [confirmLogout, setConfirmLogout] = useState(false)
   const [collapsed, setCollapsed] = useState(() => {
@@ -158,6 +160,7 @@ export default function AppLayout() {
         onCancel={() => setConfirmLogout(false)}
         onConfirm={() => {
           setConfirmLogout(false)
+          addLog('info', '使用者登出', '登入模組', `${user?.displayName ?? ''} 登出後台管理系統`)
           logout()
           navigate('/login', { replace: true })
         }}

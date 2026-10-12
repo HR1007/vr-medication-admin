@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { LockKeyhole, UserRound } from 'lucide-react'
 import { useAuth } from '../../lib/auth'
+import { useStore } from '../../lib/store'
 import { AuthField, AuthShell } from './AuthShell'
 
 type Phase = 'idle' | 'loading' | 'leaving'
@@ -11,6 +12,7 @@ const LEAVE_DURATION = 600
 
 export default function LoginPage() {
   const { user, login } = useAuth()
+  const { addLog } = useStore()
   const navigate = useNavigate()
   const location = useLocation()
   const from = (location.state as { from?: string } | null)?.from ?? '/folders'
@@ -40,6 +42,7 @@ export default function LoginPage() {
       setPhase('leaving')
       window.setTimeout(() => {
         login(username.trim(), remember)
+        addLog('info', '使用者登入', '登入模組', `${username.trim()} 登入後台管理系統`)
         navigate(from, { replace: true })
       }, LEAVE_DURATION)
     }, SIGN_IN_DELAY)

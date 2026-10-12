@@ -5,12 +5,13 @@ import { createSeed, type DemoData, type LogEntry, type LogLevel, type TestRecor
  * Demo "database": the seed data plus every change a visitor makes, persisted
  * to localStorage so deletes / edits survive a reload. resetDemo() restores the seed.
  */
-const STORAGE_KEY = 'vrma-data-v1'
+const STORAGE_KEY = 'vrma-data-v2'
 
 function load(): DemoData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) return JSON.parse(raw) as DemoData
+    localStorage.removeItem('vrma-data-v1') // data saved by an older version of the demo
   } catch {
     // corrupted or unavailable storage — fall back to the seed
   }
@@ -28,6 +29,7 @@ type Store = DemoData & {
   updateRecord: (recordId: string, patch: Partial<Pick<TestRecord, 'grade' | 'studentId' | 'score'>>) => void
   deleteAnswer: (recordId: string, answerId: string) => void
   addLog: (level: LogLevel, title: string, module: string, message: string) => void
+  deleteLog: (logId: string) => void
   resetDemo: () => void
 }
 
@@ -73,11 +75,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     }))
   }, [])
 
+  const deleteLog = useCallback((logId: string) => {
+    setData((d) => ({ ...d, logs: d.logs.filter((l) => l.id !== logId) }))
+  }, [])
+
   const resetDemo = useCallback(() => setData(createSeed()), [])
 
   const value = useMemo(
-    () => ({ ...data, deleteFolder, deleteRecords, updateRecord, deleteAnswer, addLog, resetDemo }),
-    [data, deleteFolder, deleteRecords, updateRecord, deleteAnswer, addLog, resetDemo],
+    () => ({ ...data, deleteFolder, deleteRecords, updateRecord, deleteAnswer, addLog, deleteLog, resetDemo }),
+    [data, deleteFolder, deleteRecords, updateRecord, deleteAnswer, addLog, deleteLog, resetDemo],
   )
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
