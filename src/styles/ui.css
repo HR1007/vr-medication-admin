@@ -176,6 +176,18 @@
   color: var(--text-faint);
 }
 
+.caption__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: var(--fs-xs);
+}
+
 /* ---------- empty state ---------- */
 .empty {
   display: flex;
@@ -196,5 +208,12 @@
 
   .filter-bar__actions .btn {
     flex: 1;
+  }
+}
+
+@keyframes actions-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
   }
 }

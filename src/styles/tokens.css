@@ -49,6 +49,19 @@
   --text-muted: var(--gray-600);
   --text-faint: var(--gray-500);
   --text-on-dark: #f3f4f6;
+  --link: var(--accent);
+  --checkbox: #0075ff;
+  --bg-filter: var(--primary-tint);
+  --bg-table: var(--white);
+  --bg-table-head: var(--gray-300);
+  --bg-row-selected: #e5e5e5;
+  --border-table: #e5e7eb;
+  --text-table: var(--ink);
+  --text-table-head: var(--gray-icon);
+  --pill-done-bg: var(--primary-tint);
+  --pill-done-text: #166534;
+  --pill-pending-bg: var(--warning-tint);
+  --pill-pending-text: #b45309;
   --nav-bg: var(--ink-deep);
   --nav-border: var(--ink);
   --overlay: rgb(0 0 0 / 0.5);
@@ -95,6 +108,14 @@
   --text-heading: var(--white);
   --text-label: var(--white);
   --text-body: var(--white);
+  --link: var(--primary);
+  --bg-filter: transparent;
+  --bg-table: var(--ink);
+  --bg-table-head: var(--ink);
+  --bg-row-selected: #4b5563;
+  --border-table: #4b5563;
+  --text-table: var(--white);
+  --text-table-head: var(--white);
 
   color-scheme: dark;
 }
