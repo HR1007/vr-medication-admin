@@ -1,5 +1,6 @@
 /* Login + Reset Password screens are light-only in Figma, so they use palette tokens, not theme tokens. */
 .auth {
+  color-scheme: light; /* native checkbox / inputs stay light even when the dashboard theme is dark */
   min-height: 100%;
   display: flex;
   justify-content: center;
