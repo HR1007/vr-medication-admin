@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from 'react'
 import { createPortal } from 'react-dom'
+import { useFocusTrap } from '../lib/useFocusTrap'
 import './EditStudentDialog.css'
 
 export type StudentPatch = { grade: number; studentId: string; score: number }
@@ -22,6 +23,8 @@ export default function EditStudentDialog({ initial, suggestions, onCancel, onSa
   const [listOpen, setListOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
   const firstRef = useRef<HTMLInputElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+  useFocusTrap(formRef)
   const listId = useId()
 
   const matches = useMemo(() => {
@@ -66,7 +69,7 @@ export default function EditStudentDialog({ initial, suggestions, onCancel, onSa
   return createPortal(
     <div className="dialog-overlay" onMouseDown={(e) => e.target === e.currentTarget && onCancel()}>
       <div className="edit-dialog">
-        <form className="edit-dialog__card" onSubmit={submit} noValidate role="dialog" aria-modal="true" aria-labelledby="edit-title">
+        <form ref={formRef} className="edit-dialog__card" onSubmit={submit} noValidate role="dialog" aria-modal="true" aria-labelledby="edit-title">
           <h2 id="edit-title" className="edit-dialog__title">
             編輯學生資訊
           </h2>

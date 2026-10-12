@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { useFocusTrap } from '../lib/useFocusTrap'
 import './ConfirmDialog.css'
 
 type Props = {
@@ -27,6 +28,8 @@ export default function ConfirmDialog({
   onCancel,
 }: Props) {
   const confirmRef = useRef<HTMLButtonElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(dialogRef, open)
   const onCancelRef = useRef(onCancel)
   useEffect(() => {
     onCancelRef.current = onCancel
@@ -50,7 +53,7 @@ export default function ConfirmDialog({
 
   return createPortal(
     <div className="dialog-overlay" onMouseDown={(e) => e.target === e.currentTarget && onCancel()}>
-      <div className={`confirm confirm--${tone}`} role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
+      <div ref={dialogRef} className={`confirm confirm--${tone}`} role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
         <span className="confirm__icon">{icon}</span>
         <h2 id="confirm-title" className="confirm__title">{title}</h2>
         <p id="confirm-desc" className="confirm__desc">{description}</p>
