@@ -21,6 +21,8 @@ function buildNavItems(pathname: string): NavItem[] {
 
 const COLLAPSE_KEY = 'vrma-sidebar-collapsed'
 const narrowScreen = () => window.matchMedia('(max-width: 1023px)').matches
+/** On phones the expanded sidebar overlays the page, so it closes after each navigation. */
+const phoneScreen = () => window.matchMedia('(max-width: 767px)').matches
 
 export default function AppLayout() {
   const { theme, toggleTheme } = useTheme()
@@ -109,6 +111,7 @@ export default function AppLayout() {
                   key={label}
                   to={to}
                   end={end}
+                  onClick={() => phoneScreen() && setCollapsed(true)}
                   className={({ isActive }) => `sidebar__item${isActive ? ' is-active' : ''}`}
                   title={collapsed ? label : undefined}
                 >
@@ -145,6 +148,8 @@ export default function AppLayout() {
             )}
           </div>
         </aside>
+
+        {!collapsed && <div className="sidebar-backdrop" onClick={() => setCollapsed(true)} aria-hidden />}
 
         <main className="app__main">
           <Outlet />
